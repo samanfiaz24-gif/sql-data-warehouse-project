@@ -1,0 +1,70 @@
+/*
+===============================================================================
+    CREATE DATABASE AND SCHEMAS
+===============================================================================
+
+Purpose:
+    This script initializes the database structure for the Data Warehouse
+    project using the Medallion Architecture.
+
+    The Data Warehouse consists of three layers:
+
+        Bronze:
+            Stores raw source data.
+
+        Silver:
+            Stores cleaned and transformed data.
+
+        Gold:
+            Stores business-ready data for reporting and analytics.
+
+Process:
+    1. Verify whether the schemas already exist.
+    2. Drop the schemas if they exist.
+    3. Create fresh Bronze, Silver, and Gold schemas.
+    4. Verify that the schemas were created successfully.
+
+Warning:
+    DROP DATABASE permanently deletes the schema and all tables,
+    views, procedures, and data stored inside it.
+
+Note:
+    In MySQL, DATABASE and SCHEMA are effectively the same thing.
+===============================================================================
+*/
+
+
+-- =============================================================================
+-- Step 1: Verify Existing Schemas
+-- =============================================================================
+
+SELECT SCHEMA_NAME
+FROM information_schema.SCHEMATA
+WHERE SCHEMA_NAME IN ('bronze', 'silver', 'gold');
+
+
+-- =============================================================================
+-- Step 2: Drop Existing Schemas
+-- =============================================================================
+
+DROP DATABASE IF EXISTS bronze;
+DROP DATABASE IF EXISTS silver;
+DROP DATABASE IF EXISTS gold;
+
+
+-- =============================================================================
+-- Step 3: Create Fresh Schemas
+-- =============================================================================
+
+CREATE DATABASE bronze;
+CREATE DATABASE silver;
+CREATE DATABASE gold;
+
+
+-- =============================================================================
+-- Step 4: Verify Newly Created Schemas
+-- =============================================================================
+
+SELECT SCHEMA_NAME
+FROM information_schema.SCHEMATA
+WHERE SCHEMA_NAME IN ('bronze', 'silver', 'gold');
