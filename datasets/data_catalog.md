@@ -6,7 +6,7 @@ The Gold Layer contains business-ready data designed for reporting and analytica
 
 It follows a **Star Schema** and consists of:
 
-- **Dimension Views** — descriptive information that provides business context.
+- **Dimension Views** - descriptive information that provides business context.
 - **Fact View** — transactional data containing measurable business metrics.
 
 ### Gold Layer Objects
@@ -26,7 +26,7 @@ Stores customer information enriched with demographic and geographic data from C
 
 | Column Name | Data Type | Description |
 |---|---|---|
-| `customer_key` | BIGINT | Surrogate key generated in the Gold Layer to uniquely identify each customer record in the dimension view. |
+| `customer_key` | INT | Surrogate key generated in the Gold Layer to uniquely identify each customer record in the dimension view. |
 | `customer_id` | INT | Unique numerical identifier assigned to the customer in the CRM source system. |
 | `customer_number` | VARCHAR(50) | Alphanumeric business identifier used to track and reference the customer across source systems. |
 | `firstname` | VARCHAR(50) | Customer's first name as recorded in the CRM system after Silver-layer cleaning. |
@@ -46,7 +46,7 @@ Stores descriptive information about currently active products enriched with ERP
 
 | Column Name | Data Type | Description |
 |---|---|---|
-| `product_key` | BIGINT | Surrogate key generated in the Gold Layer to uniquely identify each product record in the dimension view. |
+| `product_key` | INT | Surrogate key generated in the Gold Layer to uniquely identify each product record in the dimension view. |
 | `product_id` | INT | Unique numerical identifier assigned to the product in the CRM source system. |
 | `product_number` | VARCHAR(50) | Alphanumeric business identifier used to reference the product and link it to sales transactions. |
 | `product_name` | VARCHAR(50) | Descriptive name of the product as recorded in the CRM product data. |
@@ -71,8 +71,8 @@ Stores sales transactions and measurable business values for analytical use.
 | Column Name | Data Type | Description |
 |---|---|---|
 | `order_number` | VARCHAR(50) | Alphanumeric sales-order identifier used to track and reference each business transaction. |
-| `product_key` | BIGINT | Surrogate key that associates the sales transaction with the corresponding product record in `gold.dim_products`. |
-| `customer_key` | BIGINT | Surrogate key that associates the sales transaction with the corresponding customer record in `gold.dim_customers`. |
+| `product_key` | INT | Surrogate key that associates the sales transaction with the corresponding product record in `gold.dim_products`. |
+| `customer_key` | INT | Surrogate key that associates the sales transaction with the corresponding customer record in `gold.dim_customers`. |
 | `order_date` | DATE | Date when the customer placed the sales order, stored in `YYYY-MM-DD` format. |
 | `shipping_date` | DATE | Date when the ordered product was shipped to the customer. |
 | `due_date` | DATE | Date by which the sales order was expected to be completed or fulfilled. |
